@@ -79,12 +79,9 @@ public class EgOn310 extends Tree{
 		n7.left = n3;
 
 		complete(tree.root, tree.nil);
-		tree.postOrder(tree.root);
 		
 		
-		
-		
-		
+
 		
 		
 		

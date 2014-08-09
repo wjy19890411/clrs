@@ -162,7 +162,156 @@ public class Tree {
 		System.out.println("printTreeColor completed!");
 	}
 	
+	public Node search(Node x, int key){
+		if(x == nil || x.key == key){
+			return x;
+		}
+		if(key < x.key){
+			return search(x.left, key);
+		}
+		else{
+			return search(x.right, key);
+		}
+	}
+	
+	public Node min(Node x){
+		while(x.left != nil){
+			x = x.left;
+		}
+		return x;
+	}
+	
+	public Node max(Node x){
+		while(x.right != nil){
+			x = x.right;
+		}
+		return x;
+	}
+	
+	public Node successor(Node x){
+		if(x.right != nil){
+			return min(x.right);
+		}
+		else{
+			Node y = new Node(0);
+			y = x.parent;
+			while(y != nil && x == y.right){
+				x = y;
+				y = x.parent;
+			}
+			return y;
+		}
+	}
+	
+	public Node predecessor(Node x){
+		if(x.left != nil){
+			return max(x.left);
+		}
+		else{
+			Node y = new Node(0);
+			y = x.parent;
+			while(y != nil && x == y.left){
+				x = y;
+				y = x.parent;
+			}
+			return y;
+		}
+	}
+	
+	public void insert(Tree T, Node z){
+		z.parent = nil;
+		z.left = nil;
+		z.right = nil;
+		Node y = new Node(0);
+		Node x = new Node(0);
+		x = T.root;
+		y = nil;
+		while(x != nil){
+			y = x;
+			if(z.key < x.key){
+				x = x.left;
+			}
+			else{
+				x = x.right;
+			}
+		}
+		z.parent = y;
+		if(y == nil){
+			T.root = z;
+		}
+		else{
+			if(z.key < y.key){
+				y.left = z;
+			}
+			else{
+				y.right = z;
+			}
+		}
+	}
+	
+	//replace subtree u with v, u can't be nil, v can be nil
+	public void transplant(Tree T, Node u, Node v){
+		if(u.parent == nil){
+			T.root = v;
+		}
+		else{
+			if(u == u.parent.left){
+				u.parent.left = v;
+			}
+			else{
+				u.parent.right = v;
+			}
+		}
+		if(v != nil){
+			v.parent = u.parent;
+		}
+		return;
+	}
+	
+	public void delete(Tree T, Node z){
+		if(z.left == nil){
+			transplant(T, z, z.right);
+			return;
+		}
+		else if(z.right == nil){
+			transplant(T, z, z.left);
+			return;
+		}
+		else{
+			Node y = new Node(0);
+			y = min(z.right);
+			if(y != z.right){
+				transplant(T, y, y.right);
+				y.right = z.right;
+				z.right.parent = y;
+			}
+			transplant(T, z, y);
+			y.left = z.left;
+			y.left.parent = y;
+		}
+			
+		
+	}
 	
 	
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
