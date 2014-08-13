@@ -262,9 +262,8 @@ public class Tree {
 				u.parent.right = v;
 			}
 		}
-		if(v != nil){
-			v.parent = u.parent;
-		}
+		v.parent = u.parent;
+		//allow v == nil, ??
 		return;
 	}
 	
@@ -289,12 +288,56 @@ public class Tree {
 			y.left = z.left;
 			y.left.parent = y;
 		}
-			
 		
 	}
 	
+	//x.right != nil
+	public void leftrotate(Tree T, Node x){
+		Node y = new Node(0);
+		y = x.right;
+		if(x.parent == nil){
+			T.root = y;
+		}
+		else{
+			if(x == x.parent.left){
+				x.parent.left = y;
+			}
+			else{
+				x.parent.right = y;
+			}
+		}
+		y.parent = x.parent;
+		if(y.left != nil){
+			y.left.parent = x;
+		}
+		x.right = y.left;
+		x.parent = y;
+		y.left = x;
+	}
 	
-	
+	public void rightrotate(Tree T, Node x){
+		Node y = new Node(0);
+		y = x.left;
+		y.parent = x.parent;
+		if(x.parent == nil){
+			T.root = y;
+		}
+		else{
+			if(x == x.parent.left){
+				x.parent.left = y;
+			}
+			else{
+				x.parent.right = y;
+			}
+		}
+		x.left = y.right;
+		if(y.right != nil){
+			y.right.parent = x;
+		}
+		y.parent = x.parent;
+		y.right = x;
+		x.parent = y;
+	}
 	
 	
 	

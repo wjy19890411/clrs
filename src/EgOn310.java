@@ -80,8 +80,11 @@ public class EgOn310 extends Tree{
 
 		complete(tree.root, tree.nil);
 		
-		
-
+		tree.printTreeKey(tree.root);
+		tree.leftrotate(tree, tree.root);
+		tree.printTreeKey(tree.root);
+		tree.rightrotate(tree, tree.root);
+		tree.printTreeKey(tree.root);
 		
 		
 		
