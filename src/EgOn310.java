@@ -2,7 +2,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 
-public class EgOn310 extends Tree{
+public class EgOn310 extends Rbtree{
 
 	/**
 	 * @param args
@@ -79,13 +79,12 @@ public class EgOn310 extends Tree{
 		n7.left = n3;
 
 		complete(tree.root, tree.nil);
+		tree.rbdelete(tree, n41);
+		
 		
 		tree.printTreeKey(tree.root);
-		tree.leftrotate(tree, tree.root);
-		tree.printTreeKey(tree.root);
-		tree.rightrotate(tree, tree.root);
-		tree.printTreeKey(tree.root);
-		
+		tree.printTreeColor(tree.root);
+
 		
 		
 		

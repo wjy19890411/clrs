@@ -263,7 +263,6 @@ public class Tree {
 			}
 		}
 		v.parent = u.parent;
-		//allow v == nil, ??
 		return;
 	}
 	
